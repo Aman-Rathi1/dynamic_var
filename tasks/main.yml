@@ -1,0 +1,19 @@
+---
+# tasks file for dynamic_var
+- include_vars: "{{ansible_distribution}}.yml"
+
+- name: installing http webserver
+  package:
+     name: "{{ package_name }}"
+     state: present
+
+- name: starting service
+  service:
+     name: "{{service_name}}"
+     state: started
+
+- name: copying templates
+  template:
+     src: "{{ansible_distribution}}.html.j2"
+     dest: "/var/www/html/index.html"
+  notify: restart webserver
