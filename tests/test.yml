@@ -1,0 +1,6 @@
+- hosts: tag_name_webserver
+  tasks:
+  - name: config webserver 
+    include_role:
+       name: ../roles/dynamic_var
+
